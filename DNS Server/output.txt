@@ -1,0 +1,805 @@
+[00.0251           Setup]: Using IP 172.104.219.233 as the root
+[00.0528           Setup]: Using 66.228.41.251:60053 as the reference server
+[00.0666   Request 31190]: Created request 31190 to go off at 0.9587205199764975
+[00.0666   Request 17094]: Created request 17094 to go off at 3.5857401963421514
+[00.0667   Request 48490]: Created request 48490 to go off at 2.704869428145194
+[00.0667        Client 0]: Bound to IP 0.0.0.0 port 50099
+[00.0668   Request 35314]: Created request 35314 to go off at 0.17943315714481656
+[00.0668   Request 61964]: Created request 61964 to go off at 2.474417061246445
+[00.0668   Request 50804]: Created request 50804 to go off at 1.2899061279550246
+[00.0668        Client 1]: Bound to IP 0.0.0.0 port 58389
+[00.0669   Request 36658]: Created request 36658 to go off at 2.4100071137377057
+[00.0669   Request 21377]: Created request 21377 to go off at 3.1937922161000225
+[00.0670   Request 42780]: Created request 42780 to go off at 2.41754368277334
+[00.0670        Client 2]: Bound to IP 0.0.0.0 port 56060
+[00.0670   Request 36578]: Created request 36578 to go off at 4.857143290636544
+[00.0671   Request 30926]: Created request 30926 to go off at 1.4580619935120316
+[00.0671    Request 4720]: Created request 4720 to go off at 1.316866023696921
+[00.0671        Client 3]: Bound to IP 0.0.0.0 port 50225
+[00.0671       Simulator]: Beginning simulation
+[00.0671       Simulator]: Starting 4700dns with command './4700dns 172.104.219.233 configs/example.com.zone'
+[00.0702       Simulator]: Pipe to 4700dns broken
+[00.1049         4700dns]: SOA record: example.com.            5       IN      SOA     dns1.example.com. hostmaster.example.com. 2001062501 21600 3600 604800 86400 
+[00.1053         4700dns]: rdata type: <class 'dnslib.dns.RR'>
+[00.1053         4700dns]: Bound to port 59749
+[00.1053       Simulator]: Found executable bound to port 59749
+[00.1063         4700dns]: Record: example.com.            5       IN      SOA     dns1.example.com. hostmaster.example.com. 2001062501 21600 3600 604800 86400
+[00.1063         4700dns]: type: <class 'dnslib.dns.NS'>
+[00.1063         4700dns]: Record: example.com.            5       IN      NS      dns1.example.com.
+[00.1063         4700dns]: type: <class 'dnslib.dns.NS'>
+[00.1063         4700dns]: Record: example.com.            5       IN      NS      dns2.example.com.
+[00.1063         4700dns]: Record: example.com.            5       IN      MX      10 mail.example.com.
+[00.1063         4700dns]: Record: example.com.            5       IN      MX      20 mail2.example.com.
+[00.1064         4700dns]: Record: dns1.example.com.       5       IN      A       10.0.1.1
+[00.1064         4700dns]: Record: dns2.example.com.       5       IN      A       10.0.1.2
+[00.1064         4700dns]: Record: server1.example.com.    5       IN      A       10.0.1.5
+[00.1064         4700dns]: Record: server2.example.com.    5       IN      A       10.0.1.6
+[00.1064         4700dns]: Record: server2.example.com.    5       IN      A       10.0.1.7
+[00.1064         4700dns]: Record: server2.example.com.    5       IN      A       10.0.1.8
+[00.1064         4700dns]: Record: ftp.example.com.        5       IN      CNAME   mislove.org.
+[00.1064         4700dns]: Record: mail.example.com.       5       IN      CNAME   server1.example.com.
+[00.1064         4700dns]: Record: mail2.example.com.      5       IN      CNAME   server2.example.com.
+[00.1065         4700dns]: Record: www.example.com.        5       IN      CNAME   server1.example.com.
+[00.1065         4700dns]: Record: sub.example.com.        5       IN      NS      ns2.example.com.
+[00.1065         4700dns]: Record: ns2.example.com.        5       IN      A       10.0.2.1
+[00.1065         4700dns]: Record: txt.example.com.        5       IN      TXT     "txttext"
+[00.2071        Client 1]: Sending request to 127.0.0.1:
+[00.2071        Client 1]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35314
+[00.2071        Client 1]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[00.2071        Client 1]: ;; QUESTION SECTION:
+[00.2071        Client 1]: ;trunc.                         IN      NS
+[00.2085         4700dns]: Received message:
+[00.2085         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35314
+[00.2085         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[00.2085         4700dns]: ;; QUESTION SECTION:
+[00.2085         4700dns]: ;trunc.                         IN      NS
+[00.2085         4700dns]: Request: trunc., Type: NS
+[00.2086         4700dns]: No local record for trunc.. Forwarding request to root server
+[00.2086         4700dns]: Cache: [dict_keys([])]
+[00.2087         4700dns]: Failed to find cached query for trunc.
+[00.2087         4700dns]: Current ip address: 172.104.219.233
+[00.2409         4700dns]: Received response from the 172.104.219.233 server:
+[00.2409         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35314
+[00.2409         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[00.2410         4700dns]: ;; QUESTION SECTION:
+[00.2410         4700dns]: ;trunc.                         IN      NS
+[00.2410         4700dns]: ;; AUTHORITY SECTION:
+[00.2410         4700dns]: trunc.                  5       IN      NS      ns.trunc.
+[00.2410         4700dns]: ;; ADDITIONAL SECTION:
+[00.2410         4700dns]: ns.trunc.               5       IN      A       50.116.57.75
+[00.2410         4700dns]: Forwarding query
+[00.2410         4700dns]: ns address: ns.trunc.
+[00.2410         4700dns]: ar rdata: 50.116.57.75
+[00.2410         4700dns]: Cache: [dict_keys([])]
+[00.2410         4700dns]: Failed to find cached query for trunc.
+[00.2411         4700dns]: Current ip address: 50.116.57.75
+[00.2726         4700dns]: Received response from the 50.116.57.75 server:
+[00.2727         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 35314
+[00.2727         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[00.2727         4700dns]: ;; QUESTION SECTION:
+[00.2727         4700dns]: ;trunc.                         IN      NS
+[00.2727         4700dns]: Forwarding query
+[00.2728         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35314
+[00.2728         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[00.2728         4700dns]: ;; QUESTION SECTION:
+[00.2728         4700dns]: ;trunc.                         IN      NS
+[00.2728         4700dns]: ;; AUTHORITY SECTION:
+[00.2728         4700dns]: trunc.                  5       IN      NS      ns.trunc.
+[00.2728         4700dns]: ;; ADDITIONAL SECTION:
+[00.2728         4700dns]: ns.trunc.               5       IN      A       50.116.57.75
+[00.2728         4700dns]: Adding to cache
+[00.2728         4700dns]: baliwick domain: trunc.
+[00.2728         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[00.2728         4700dns]: Sending message:
+[00.2728         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35314
+[00.2729         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[00.2729         4700dns]: ;; QUESTION SECTION:
+[00.2729         4700dns]: ;trunc.                         IN      NS
+[00.2729         4700dns]: ;; AUTHORITY SECTION:
+[00.2729         4700dns]: trunc.                  5       IN      NS      ns.trunc.
+[00.2729         4700dns]: ;; ADDITIONAL SECTION:
+[00.2729         4700dns]: ns.trunc.               5       IN      A       50.116.57.75
+[00.2732        Client 1]: Got response from ('127.0.0.1', 59749):
+[00.2732        Client 1]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 35314
+[00.2732        Client 1]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[00.2732        Client 1]: ;; QUESTION SECTION:
+[00.2732        Client 1]: ;trunc.                         IN      NS
+[00.2732        Client 1]: ;; AUTHORITY SECTION:
+[00.2732        Client 1]: trunc.                  5       IN      NS      ns.trunc.
+[00.2732        Client 1]: ;; ADDITIONAL SECTION:
+[00.2732        Client 1]: ns.trunc.               5       IN      A       50.116.57.75
+[00.9769        Client 0]: Sending request to 127.0.0.1:
+[00.9769        Client 0]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31190
+[00.9769        Client 0]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[00.9769        Client 0]: ;; QUESTION SECTION:
+[00.9769        Client 0]: ;baz.                           IN      NS
+[00.9780         4700dns]: Received message:
+[00.9780         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31190
+[00.9780         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[00.9780         4700dns]: ;; QUESTION SECTION:
+[00.9780         4700dns]: ;baz.                           IN      NS
+[00.9780         4700dns]: Request: baz., Type: NS
+[00.9782         4700dns]: No local record for baz.. Forwarding request to root server
+[00.9782         4700dns]: Cache: [dict_keys([])]
+[00.9782         4700dns]: Failed to find cached query for baz.
+[00.9782         4700dns]: Current ip address: 172.104.219.233
+[01.0091         4700dns]: Received response from the 172.104.219.233 server:
+[01.0091         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31190
+[01.0091         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[01.0091         4700dns]: ;; QUESTION SECTION:
+[01.0091         4700dns]: ;baz.                           IN      NS
+[01.0091         4700dns]: ;; AUTHORITY SECTION:
+[01.0091         4700dns]: baz.                    5       IN      NS      ns.baz.
+[01.0091         4700dns]: ;; ADDITIONAL SECTION:
+[01.0091         4700dns]: ns.baz.                 5       IN      A       50.116.57.242
+[01.0091         4700dns]: Forwarding query
+[01.0091         4700dns]: ns address: ns.baz.
+[01.0091         4700dns]: ar rdata: 50.116.57.242
+[01.0091         4700dns]: Cache: [dict_keys([])]
+[01.0091         4700dns]: Failed to find cached query for baz.
+[01.0091         4700dns]: Current ip address: 50.116.57.242
+[01.0402         4700dns]: Received response from the 50.116.57.242 server:
+[01.0402         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31190
+[01.0402         4700dns]: ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[01.0402         4700dns]: ;; QUESTION SECTION:
+[01.0402         4700dns]: ;baz.                           IN      NS
+[01.0402         4700dns]: ;; ANSWER SECTION:
+[01.0402         4700dns]: baz.                    5       IN      NS      ns.baz.
+[01.0402         4700dns]: ;; ADDITIONAL SECTION:
+[01.0402         4700dns]: ns.baz.                 5       IN      A       50.116.57.242
+[01.0402         4700dns]: RR in response: baz.                    5       IN      NS      ns.baz.
+[01.0403         4700dns]: Adding to cache
+[01.0403         4700dns]: Added query baz. to cache with a ttl of 5
+[01.0403         4700dns]: Cache: [dict_keys([])]
+[01.0405         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31190
+[01.0406         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[01.0406         4700dns]: ;; QUESTION SECTION:
+[01.0406         4700dns]: ;baz.                           IN      NS
+[01.0406         4700dns]: ;; ANSWER SECTION:
+[01.0406         4700dns]: baz.                    5       IN      NS      ns.baz.
+[01.0406         4700dns]: ;; AUTHORITY SECTION:
+[01.0406         4700dns]: baz.                    5       IN      NS      ns.baz.
+[01.0406         4700dns]: ;; ADDITIONAL SECTION:
+[01.0406         4700dns]: ns.baz.                 5       IN      A       50.116.57.242
+[01.0406         4700dns]: ns.baz.                 5       IN      A       50.116.57.242
+[01.0406         4700dns]: Adding to cache
+[01.0406         4700dns]: baliwick domain: baz.
+[01.0406         4700dns]: RR baz. discarded from rr, out of baliwick record
+[01.0406         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[01.0407         4700dns]: Sending message:
+[01.0407         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31190
+[01.0407         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[01.0407         4700dns]: ;; QUESTION SECTION:
+[01.0407         4700dns]: ;baz.                           IN      NS
+[01.0407         4700dns]: ;; ANSWER SECTION:
+[01.0407         4700dns]: baz.                    5       IN      NS      ns.baz.
+[01.0407         4700dns]: ;; AUTHORITY SECTION:
+[01.0407         4700dns]: baz.                    5       IN      NS      ns.baz.
+[01.0407         4700dns]: ;; ADDITIONAL SECTION:
+[01.0407         4700dns]: ns.baz.                 5       IN      A       50.116.57.242
+[01.0407         4700dns]: ns.baz.                 5       IN      A       50.116.57.242
+[01.0413        Client 0]: Got response from ('127.0.0.1', 59749):
+[01.0413        Client 0]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31190
+[01.0413        Client 0]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[01.0413        Client 0]: ;; QUESTION SECTION:
+[01.0413        Client 0]: ;baz.                           IN      NS
+[01.0413        Client 0]: ;; ANSWER SECTION:
+[01.0413        Client 0]: baz.                    5       IN      NS      ns.baz.
+[01.0413        Client 0]: ;; AUTHORITY SECTION:
+[01.0413        Client 0]: baz.                    5       IN      NS      ns.baz.
+[01.0413        Client 0]: ;; ADDITIONAL SECTION:
+[01.0413        Client 0]: ns.baz.                 5       IN      A       50.116.57.242
+[01.0413        Client 0]: ns.baz.                 5       IN      A       50.116.57.242
+[01.3430        Client 1]: Sending request to 127.0.0.1:
+[01.3430        Client 1]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50804
+[01.3430        Client 1]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[01.3430        Client 1]: ;; QUESTION SECTION:
+[01.3430        Client 1]: ;drop.                          IN      NS
+[01.3432        Client 3]: Sending request to 127.0.0.1:
+[01.3432        Client 3]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4720
+[01.3432        Client 3]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[01.3432        Client 3]: ;; QUESTION SECTION:
+[01.3432        Client 3]: ;trunc.                         IN      NS
+[01.3464         4700dns]: Received message:
+[01.3465         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50804
+[01.3465         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[01.3465         4700dns]: ;; QUESTION SECTION:
+[01.3465         4700dns]: ;drop.                          IN      NS
+[01.3465         4700dns]: Received message:
+[01.3465         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4720
+[01.3465         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[01.3465         4700dns]: ;; QUESTION SECTION:
+[01.3465         4700dns]: ;trunc.                         IN      NS
+[01.3465         4700dns]: Request: trunc., Type: NS
+[01.3465         4700dns]: Request: drop., Type: NS
+[01.3465         4700dns]: No local record for trunc.. Forwarding request to root server
+[01.3465         4700dns]: Cache: [dict_keys(['baz.'])]
+[01.3465         4700dns]: Failed to find cached query for trunc.
+[01.3465         4700dns]: No local record for drop.. Forwarding request to root server
+[01.3465         4700dns]: Cache: [dict_keys(['baz.'])]
+[01.3465         4700dns]: Failed to find cached query for drop.
+[01.3465         4700dns]: Current ip address: 172.104.219.233
+[01.3465         4700dns]: Current ip address: 172.104.219.233
+[01.3779         4700dns]: Received response from the 172.104.219.233 server:
+[01.3779         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50804
+[01.3779         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[01.3779         4700dns]: ;; QUESTION SECTION:
+[01.3779         4700dns]: ;drop.                          IN      NS
+[01.3779         4700dns]: ;; AUTHORITY SECTION:
+[01.3779         4700dns]: drop.                   5       IN      NS      ns.drop.
+[01.3780         4700dns]: ;; ADDITIONAL SECTION:
+[01.3780         4700dns]: ns.drop.                5       IN      A       45.56.110.240
+[01.3780         4700dns]: Forwarding query
+[01.3780         4700dns]: ns address: ns.drop.
+[01.3780         4700dns]: ar rdata: 45.56.110.240
+[01.3780         4700dns]: Cache: [dict_keys(['baz.'])]
+[01.3780         4700dns]: Failed to find cached query for drop.
+[01.3780         4700dns]: Current ip address: 45.56.110.240
+[01.3798         4700dns]: Received response from the 172.104.219.233 server:
+[01.3798         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4720
+[01.3798         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[01.3798         4700dns]: ;; QUESTION SECTION:
+[01.3798         4700dns]: ;trunc.                         IN      NS
+[01.3798         4700dns]: ;; AUTHORITY SECTION:
+[01.3798         4700dns]: trunc.                  5       IN      NS      ns.trunc.
+[01.3798         4700dns]: ;; ADDITIONAL SECTION:
+[01.3798         4700dns]: ns.trunc.               5       IN      A       50.116.57.75
+[01.3798         4700dns]: Forwarding query
+[01.3798         4700dns]: ns address: ns.trunc.
+[01.3798         4700dns]: ar rdata: 50.116.57.75
+[01.3798         4700dns]: Cache: [dict_keys(['baz.'])]
+[01.3798         4700dns]: Failed to find cached query for trunc.
+[01.3798         4700dns]: Current ip address: 50.116.57.75
+[01.4076         4700dns]: Received response from the 45.56.110.240 server:
+[01.4076         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50804
+[01.4076         4700dns]: ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[01.4076         4700dns]: ;; QUESTION SECTION:
+[01.4076         4700dns]: ;drop.                          IN      NS
+[01.4076         4700dns]: ;; ANSWER SECTION:
+[01.4076         4700dns]: drop.                   5       IN      NS      ns.drop.
+[01.4077         4700dns]: ;; ADDITIONAL SECTION:
+[01.4077         4700dns]: ns.drop.                5       IN      A       45.56.110.240
+[01.4077         4700dns]: RR in response: drop.                   5       IN      NS      ns.drop.
+[01.4077         4700dns]: Adding to cache
+[01.4077         4700dns]: Added query drop. to cache with a ttl of 5
+[01.4077         4700dns]: Cache: [dict_keys(['baz.'])]
+[01.4078         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50804
+[01.4078         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[01.4078         4700dns]: ;; QUESTION SECTION:
+[01.4078         4700dns]: ;drop.                          IN      NS
+[01.4078         4700dns]: ;; ANSWER SECTION:
+[01.4078         4700dns]: drop.                   5       IN      NS      ns.drop.
+[01.4078         4700dns]: ;; AUTHORITY SECTION:
+[01.4078         4700dns]: drop.                   5       IN      NS      ns.drop.
+[01.4079         4700dns]: ;; ADDITIONAL SECTION:
+[01.4079         4700dns]: ns.drop.                5       IN      A       45.56.110.240
+[01.4079         4700dns]: ns.drop.                5       IN      A       45.56.110.240
+[01.4079         4700dns]: Adding to cache
+[01.4079         4700dns]: baliwick domain: drop.
+[01.4079         4700dns]: RR drop. discarded from rr, out of baliwick record
+[01.4079         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[01.4079         4700dns]: Sending message:
+[01.4079         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50804
+[01.4079         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[01.4079         4700dns]: ;; QUESTION SECTION:
+[01.4079         4700dns]: ;drop.                          IN      NS
+[01.4079         4700dns]: ;; ANSWER SECTION:
+[01.4080         4700dns]: drop.                   5       IN      NS      ns.drop.
+[01.4080         4700dns]: ;; AUTHORITY SECTION:
+[01.4080         4700dns]: drop.                   5       IN      NS      ns.drop.
+[01.4080         4700dns]: ;; ADDITIONAL SECTION:
+[01.4080         4700dns]: ns.drop.                5       IN      A       45.56.110.240
+[01.4081         4700dns]: ns.drop.                5       IN      A       45.56.110.240
+[01.4088        Client 1]: Got response from ('127.0.0.1', 59749):
+[01.4088        Client 1]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50804
+[01.4088        Client 1]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[01.4088        Client 1]: ;; QUESTION SECTION:
+[01.4088        Client 1]: ;drop.                          IN      NS
+[01.4088        Client 1]: ;; ANSWER SECTION:
+[01.4088        Client 1]: drop.                   5       IN      NS      ns.drop.
+[01.4088        Client 1]: ;; AUTHORITY SECTION:
+[01.4088        Client 1]: drop.                   5       IN      NS      ns.drop.
+[01.4088        Client 1]: ;; ADDITIONAL SECTION:
+[01.4088        Client 1]: ns.drop.                5       IN      A       45.56.110.240
+[01.4088        Client 1]: ns.drop.                5       IN      A       45.56.110.240
+[01.4088         4700dns]: Received response from the 50.116.57.75 server:
+[01.4088         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 4720
+[01.4089         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[01.4089         4700dns]: ;; QUESTION SECTION:
+[01.4089         4700dns]: ;trunc.                         IN      NS
+[01.4089         4700dns]: Forwarding query
+[01.4089         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4720
+[01.4089         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[01.4089         4700dns]: ;; QUESTION SECTION:
+[01.4089         4700dns]: ;trunc.                         IN      NS
+[01.4089         4700dns]: ;; AUTHORITY SECTION:
+[01.4089         4700dns]: trunc.                  5       IN      NS      ns.trunc.
+[01.4089         4700dns]: ;; ADDITIONAL SECTION:
+[01.4089         4700dns]: ns.trunc.               5       IN      A       50.116.57.75
+[01.4089         4700dns]: Adding to cache
+[01.4089         4700dns]: baliwick domain: trunc.
+[01.4089         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[01.4089         4700dns]: Sending message:
+[01.4089         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4720
+[01.4089         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[01.4089         4700dns]: ;; QUESTION SECTION:
+[01.4089         4700dns]: ;trunc.                         IN      NS
+[01.4089         4700dns]: ;; AUTHORITY SECTION:
+[01.4089         4700dns]: trunc.                  5       IN      NS      ns.trunc.
+[01.4089         4700dns]: ;; ADDITIONAL SECTION:
+[01.4089         4700dns]: ns.trunc.               5       IN      A       50.116.57.75
+[01.4091        Client 3]: Got response from ('127.0.0.1', 59749):
+[01.4091        Client 3]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4720
+[01.4091        Client 3]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[01.4091        Client 3]: ;; QUESTION SECTION:
+[01.4091        Client 3]: ;trunc.                         IN      NS
+[01.4091        Client 3]: ;; AUTHORITY SECTION:
+[01.4091        Client 3]: trunc.                  5       IN      NS      ns.trunc.
+[01.4091        Client 3]: ;; ADDITIONAL SECTION:
+[01.4091        Client 3]: ns.trunc.               5       IN      A       50.116.57.75
+[01.5103        Client 3]: Sending request to 127.0.0.1:
+[01.5103        Client 3]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30926
+[01.5103        Client 3]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[01.5103        Client 3]: ;; QUESTION SECTION:
+[01.5103        Client 3]: ;delay.                         IN      NS
+[01.5114         4700dns]: Received message:
+[01.5114         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30926
+[01.5114         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[01.5114         4700dns]: ;; QUESTION SECTION:
+[01.5115         4700dns]: ;delay.                         IN      NS
+[01.5115         4700dns]: Request: delay., Type: NS
+[01.5116         4700dns]: No local record for delay.. Forwarding request to root server
+[01.5116         4700dns]: Cache: [dict_keys(['baz.', 'drop.'])]
+[01.5116         4700dns]: Failed to find cached query for delay.
+[01.5116         4700dns]: Current ip address: 172.104.219.233
+[01.5394         4700dns]: Received response from the 172.104.219.233 server:
+[01.5395         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30926
+[01.5395         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[01.5395         4700dns]: ;; QUESTION SECTION:
+[01.5395         4700dns]: ;delay.                         IN      NS
+[01.5395         4700dns]: ;; AUTHORITY SECTION:
+[01.5395         4700dns]: delay.                  5       IN      NS      ns.delay.
+[01.5395         4700dns]: ;; ADDITIONAL SECTION:
+[01.5395         4700dns]: ns.delay.               5       IN      A       45.56.110.237
+[01.5395         4700dns]: Forwarding query
+[01.5395         4700dns]: ns address: ns.delay.
+[01.5395         4700dns]: ar rdata: 45.56.110.237
+[01.5395         4700dns]: Cache: [dict_keys(['baz.', 'drop.'])]
+[01.5395         4700dns]: Failed to find cached query for delay.
+[01.5395         4700dns]: Current ip address: 45.56.110.237
+[01.5661         4700dns]: Received response from the 45.56.110.237 server:
+[01.5661         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30926
+[01.5662         4700dns]: ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[01.5662         4700dns]: ;; QUESTION SECTION:
+[01.5662         4700dns]: ;delay.                         IN      NS
+[01.5662         4700dns]: ;; ANSWER SECTION:
+[01.5662         4700dns]: delay.                  5       IN      NS      ns.delay.
+[01.5662         4700dns]: ;; ADDITIONAL SECTION:
+[01.5662         4700dns]: ns.delay.               5       IN      A       45.56.110.237
+[01.5662         4700dns]: RR in response: delay.                  5       IN      NS      ns.delay.
+[01.5662         4700dns]: Adding to cache
+[01.5662         4700dns]: Added query delay. to cache with a ttl of 5
+[01.5662         4700dns]: Cache: [dict_keys(['baz.', 'drop.'])]
+[01.5662         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30926
+[01.5662         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[01.5662         4700dns]: ;; QUESTION SECTION:
+[01.5662         4700dns]: ;delay.                         IN      NS
+[01.5662         4700dns]: ;; ANSWER SECTION:
+[01.5662         4700dns]: delay.                  5       IN      NS      ns.delay.
+[01.5663         4700dns]: ;; AUTHORITY SECTION:
+[01.5663         4700dns]: delay.                  5       IN      NS      ns.delay.
+[01.5663         4700dns]: ;; ADDITIONAL SECTION:
+[01.5663         4700dns]: ns.delay.               5       IN      A       45.56.110.237
+[01.5663         4700dns]: ns.delay.               5       IN      A       45.56.110.237
+[01.5663         4700dns]: Adding to cache
+[01.5663         4700dns]: baliwick domain: delay.
+[01.5663         4700dns]: RR delay. discarded from rr, out of baliwick record
+[01.5663         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[01.5663         4700dns]: Sending message:
+[01.5663         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30926
+[01.5663         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[01.5663         4700dns]: ;; QUESTION SECTION:
+[01.5663         4700dns]: ;delay.                         IN      NS
+[01.5663         4700dns]: ;; ANSWER SECTION:
+[01.5663         4700dns]: delay.                  5       IN      NS      ns.delay.
+[01.5663         4700dns]: ;; AUTHORITY SECTION:
+[01.5663         4700dns]: delay.                  5       IN      NS      ns.delay.
+[01.5663         4700dns]: ;; ADDITIONAL SECTION:
+[01.5663         4700dns]: ns.delay.               5       IN      A       45.56.110.237
+[01.5663         4700dns]: ns.delay.               5       IN      A       45.56.110.237
+[01.5672        Client 3]: Got response from ('127.0.0.1', 59749):
+[01.5672        Client 3]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 30926
+[01.5672        Client 3]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[01.5672        Client 3]: ;; QUESTION SECTION:
+[01.5672        Client 3]: ;delay.                         IN      NS
+[01.5672        Client 3]: ;; ANSWER SECTION:
+[01.5672        Client 3]: delay.                  5       IN      NS      ns.delay.
+[01.5672        Client 3]: ;; AUTHORITY SECTION:
+[01.5672        Client 3]: delay.                  5       IN      NS      ns.delay.
+[01.5672        Client 3]: ;; ADDITIONAL SECTION:
+[01.5672        Client 3]: ns.delay.               5       IN      A       45.56.110.237
+[01.5672        Client 3]: ns.delay.               5       IN      A       45.56.110.237
+[02.4739        Client 2]: Sending request to 127.0.0.1:
+[02.4739        Client 2]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36658
+[02.4739        Client 2]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[02.4739        Client 2]: ;; QUESTION SECTION:
+[02.4739        Client 2]: ;drop.                          IN      NS
+[02.4743        Client 2]: Sending request to 127.0.0.1:
+[02.4743        Client 2]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42780
+[02.4743        Client 2]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[02.4743        Client 2]: ;; QUESTION SECTION:
+[02.4743        Client 2]: ;delay.                         IN      NS
+[02.4780         4700dns]: Received message:
+[02.4780         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36658
+[02.4780         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[02.4780         4700dns]: ;; QUESTION SECTION:
+[02.4781         4700dns]: ;drop.                          IN      NS
+[02.4781         4700dns]: Request: drop., Type: NS
+[02.4782        Client 1]: Sending request to 127.0.0.1:
+[02.4782        Client 1]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61964
+[02.4782        Client 1]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[02.4782        Client 1]: ;; QUESTION SECTION:
+[02.4782        Client 1]: ;trunc.                         IN      NS
+[02.4785         4700dns]: No local record for drop.. Forwarding request to root server
+[02.4786         4700dns]: Cache: [dict_keys(['baz.', 'drop.', 'delay.'])]
+[02.4786         4700dns]: Found cached query
+[02.4786         4700dns]: Found cached response for drop.
+[02.4786         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36658
+[02.4786         4700dns]: ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[02.4786         4700dns]: ;; QUESTION SECTION:
+[02.4786         4700dns]: ;drop.                          IN      NS
+[02.4786         4700dns]: ;; ANSWER SECTION:
+[02.4786         4700dns]: drop.                   5       IN      NS      ns.drop.
+[02.4786         4700dns]: ;; ADDITIONAL SECTION:
+[02.4786         4700dns]: ns.drop.                5       IN      A       45.56.110.240
+[02.4787         4700dns]: Adding to cache
+[02.4787         4700dns]: Split domain: ['drop', '']
+[02.4787         4700dns]: baliwick domain: drop.
+[02.4787         4700dns]: RR drop. discarded from rr, out of baliwick record
+[02.4788         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[02.4791         4700dns]: Received message:
+[02.4791         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42780
+[02.4791         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[02.4791         4700dns]: ;; QUESTION SECTION:
+[02.4791         4700dns]: ;delay.                         IN      NS
+[02.4792         4700dns]: Request: delay., Type: NS
+[02.4794         4700dns]: No local record for delay.. Forwarding request to root server
+[02.4794         4700dns]: Cache: [dict_keys(['baz.', 'drop.', 'delay.'])]
+[02.4796         4700dns]: Found cached query
+[02.4797         4700dns]: Found cached response for delay.
+[02.4799         4700dns]: Sending message:
+[02.4799         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36658
+[02.4799         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[02.4799         4700dns]: ;; QUESTION SECTION:
+[02.4799         4700dns]: ;drop.                          IN      NS
+[02.4799         4700dns]: ;; ANSWER SECTION:
+[02.4799         4700dns]: drop.                   5       IN      NS      ns.drop.
+[02.4799         4700dns]: ;; ADDITIONAL SECTION:
+[02.4799         4700dns]: ns.drop.                5       IN      A       45.56.110.240
+[02.4802        Client 2]: Got response from ('127.0.0.1', 59749):
+[02.4802        Client 2]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36658
+[02.4802        Client 2]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[02.4802        Client 2]: ;; QUESTION SECTION:
+[02.4802        Client 2]: ;drop.                          IN      NS
+[02.4802        Client 2]: ;; ANSWER SECTION:
+[02.4802        Client 2]: drop.                   5       IN      NS      ns.drop.
+[02.4802        Client 2]: ;; ADDITIONAL SECTION:
+[02.4802        Client 2]: ns.drop.                5       IN      A       45.56.110.240
+[02.4808         4700dns]: Received message:
+[02.4808         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61964
+[02.4808         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[02.4808         4700dns]: ;; QUESTION SECTION:
+[02.4808         4700dns]: ;trunc.                         IN      NS
+[02.4808         4700dns]: Request: trunc., Type: NS
+[02.4809         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42780
+[02.4809         4700dns]: ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[02.4809         4700dns]: ;; QUESTION SECTION:
+[02.4809         4700dns]: ;delay.                         IN      NS
+[02.4810         4700dns]: ;; ANSWER SECTION:
+[02.4810         4700dns]: delay.                  5       IN      NS      ns.delay.
+[02.4810         4700dns]: ;; ADDITIONAL SECTION:
+[02.4810         4700dns]: ns.delay.               5       IN      A       45.56.110.237
+[02.4810         4700dns]: Adding to cache
+[02.4812         4700dns]: No local record for trunc.. Forwarding request to root server
+[02.4813         4700dns]: Cache: [dict_keys(['baz.', 'drop.', 'delay.'])]
+[02.4813         4700dns]: Failed to find cached query for trunc.
+[02.4813         4700dns]: Current ip address: 172.104.219.233
+[02.4813         4700dns]: Split domain: ['delay', '']
+[02.4813         4700dns]: baliwick domain: delay.
+[02.4813         4700dns]: RR delay. discarded from rr, out of baliwick record
+[02.4813         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[02.4815         4700dns]: Sending message:
+[02.4815         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42780
+[02.4815         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[02.4815         4700dns]: ;; QUESTION SECTION:
+[02.4815         4700dns]: ;delay.                         IN      NS
+[02.4815         4700dns]: ;; ANSWER SECTION:
+[02.4815         4700dns]: delay.                  5       IN      NS      ns.delay.
+[02.4815         4700dns]: ;; ADDITIONAL SECTION:
+[02.4815         4700dns]: ns.delay.               5       IN      A       45.56.110.237
+[02.4818        Client 2]: Got response from ('127.0.0.1', 59749):
+[02.4818        Client 2]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 42780
+[02.4818        Client 2]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[02.4818        Client 2]: ;; QUESTION SECTION:
+[02.4818        Client 2]: ;delay.                         IN      NS
+[02.4818        Client 2]: ;; ANSWER SECTION:
+[02.4818        Client 2]: delay.                  5       IN      NS      ns.delay.
+[02.4818        Client 2]: ;; ADDITIONAL SECTION:
+[02.4818        Client 2]: ns.delay.               5       IN      A       45.56.110.237
+[02.5077         4700dns]: Received response from the 172.104.219.233 server:
+[02.5077         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61964
+[02.5077         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[02.5077         4700dns]: ;; QUESTION SECTION:
+[02.5077         4700dns]: ;trunc.                         IN      NS
+[02.5077         4700dns]: ;; AUTHORITY SECTION:
+[02.5077         4700dns]: trunc.                  5       IN      NS      ns.trunc.
+[02.5077         4700dns]: ;; ADDITIONAL SECTION:
+[02.5077         4700dns]: ns.trunc.               5       IN      A       50.116.57.75
+[02.5077         4700dns]: Forwarding query
+[02.5077         4700dns]: ns address: ns.trunc.
+[02.5077         4700dns]: ar rdata: 50.116.57.75
+[02.5077         4700dns]: Cache: [dict_keys(['baz.', 'drop.', 'delay.'])]
+[02.5077         4700dns]: Failed to find cached query for trunc.
+[02.5077         4700dns]: Current ip address: 50.116.57.75
+[02.5383         4700dns]: Received response from the 50.116.57.75 server:
+[02.5384         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 61964
+[02.5384         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[02.5384         4700dns]: ;; QUESTION SECTION:
+[02.5384         4700dns]: ;trunc.                         IN      NS
+[02.5384         4700dns]: Forwarding query
+[02.5384         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61964
+[02.5384         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[02.5384         4700dns]: ;; QUESTION SECTION:
+[02.5384         4700dns]: ;trunc.                         IN      NS
+[02.5384         4700dns]: ;; AUTHORITY SECTION:
+[02.5384         4700dns]: trunc.                  5       IN      NS      ns.trunc.
+[02.5384         4700dns]: ;; ADDITIONAL SECTION:
+[02.5384         4700dns]: ns.trunc.               5       IN      A       50.116.57.75
+[02.5385         4700dns]: Adding to cache
+[02.5385         4700dns]: baliwick domain: trunc.
+[02.5385         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[02.5387         4700dns]: Sending message:
+[02.5387         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61964
+[02.5387         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[02.5387         4700dns]: ;; QUESTION SECTION:
+[02.5387         4700dns]: ;trunc.                         IN      NS
+[02.5387         4700dns]: ;; AUTHORITY SECTION:
+[02.5387         4700dns]: trunc.                  5       IN      NS      ns.trunc.
+[02.5388         4700dns]: ;; ADDITIONAL SECTION:
+[02.5388         4700dns]: ns.trunc.               5       IN      A       50.116.57.75
+[02.5392        Client 1]: Got response from ('127.0.0.1', 59749):
+[02.5392        Client 1]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 61964
+[02.5392        Client 1]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[02.5392        Client 1]: ;; QUESTION SECTION:
+[02.5392        Client 1]: ;trunc.                         IN      NS
+[02.5392        Client 1]: ;; AUTHORITY SECTION:
+[02.5392        Client 1]: trunc.                  5       IN      NS      ns.trunc.
+[02.5392        Client 1]: ;; ADDITIONAL SECTION:
+[02.5392        Client 1]: ns.trunc.               5       IN      A       50.116.57.75
+[02.7398        Client 0]: Sending request to 127.0.0.1:
+[02.7398        Client 0]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 48490
+[02.7398        Client 0]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[02.7398        Client 0]: ;; QUESTION SECTION:
+[02.7398        Client 0]: ;drop.                          IN      NS
+[02.7409         4700dns]: Received message:
+[02.7409         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 48490
+[02.7410         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[02.7412         4700dns]: ;; QUESTION SECTION:
+[02.7413         4700dns]: ;drop.                          IN      NS
+[02.7413         4700dns]: Request: drop., Type: NS
+[02.7414         4700dns]: No local record for drop.. Forwarding request to root server
+[02.7414         4700dns]: Cache: [dict_keys(['baz.', 'drop.', 'delay.'])]
+[02.7415         4700dns]: Found cached query
+[02.7415         4700dns]: Found cached response for drop.
+[02.7415         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 48490
+[02.7415         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[02.7415         4700dns]: ;; QUESTION SECTION:
+[02.7415         4700dns]: ;drop.                          IN      NS
+[02.7415         4700dns]: ;; ANSWER SECTION:
+[02.7415         4700dns]: drop.                   5       IN      NS      ns.drop.
+[02.7415         4700dns]: ;; ADDITIONAL SECTION:
+[02.7415         4700dns]: ns.drop.                5       IN      A       45.56.110.240
+[02.7415         4700dns]: Adding to cache
+[02.7415         4700dns]: Split domain: ['drop', '']
+[02.7415         4700dns]: baliwick domain: drop.
+[02.7415         4700dns]: RR drop. discarded from rr, out of baliwick record
+[02.7415         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[02.7415         4700dns]: Sending message:
+[02.7416         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 48490
+[02.7416         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[02.7416         4700dns]: ;; QUESTION SECTION:
+[02.7416         4700dns]: ;drop.                          IN      NS
+[02.7416         4700dns]: ;; ANSWER SECTION:
+[02.7416         4700dns]: drop.                   5       IN      NS      ns.drop.
+[02.7416         4700dns]: ;; ADDITIONAL SECTION:
+[02.7416         4700dns]: ns.drop.                5       IN      A       45.56.110.240
+[02.7420        Client 0]: Got response from ('127.0.0.1', 59749):
+[02.7420        Client 0]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 48490
+[02.7420        Client 0]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[02.7420        Client 0]: ;; QUESTION SECTION:
+[02.7420        Client 0]: ;drop.                          IN      NS
+[02.7420        Client 0]: ;; ANSWER SECTION:
+[02.7420        Client 0]: drop.                   5       IN      NS      ns.drop.
+[02.7420        Client 0]: ;; ADDITIONAL SECTION:
+[02.7420        Client 0]: ns.drop.                5       IN      A       45.56.110.240
+[03.2728        Client 2]: Sending request to 127.0.0.1:
+[03.2728        Client 2]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21377
+[03.2728        Client 2]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[03.2728        Client 2]: ;; QUESTION SECTION:
+[03.2728        Client 2]: ;foo.                           IN      NS
+[03.2742         4700dns]: Received message:
+[03.2742         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21377
+[03.2742         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[03.2742         4700dns]: ;; QUESTION SECTION:
+[03.2742         4700dns]: ;foo.                           IN      NS
+[03.2742         4700dns]: Request: foo., Type: NS
+[03.2747         4700dns]: No local record for foo.. Forwarding request to root server
+[03.2748         4700dns]: Cache: [dict_keys(['baz.', 'drop.', 'delay.'])]
+[03.2748         4700dns]: Failed to find cached query for foo.
+[03.2748         4700dns]: Current ip address: 172.104.219.233
+[03.3048         4700dns]: Received response from the 172.104.219.233 server:
+[03.3048         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21377
+[03.3048         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+[03.3048         4700dns]: ;; QUESTION SECTION:
+[03.3048         4700dns]: ;foo.                           IN      NS
+[03.3048         4700dns]: ;; AUTHORITY SECTION:
+[03.3048         4700dns]: foo.                    5       IN      NS      ns.foo.
+[03.3049         4700dns]: ;; ADDITIONAL SECTION:
+[03.3049         4700dns]: ns.foo.                 5       IN      A       172.104.219.253
+[03.3049         4700dns]: Forwarding query
+[03.3049         4700dns]: ns address: ns.foo.
+[03.3049         4700dns]: ar rdata: 172.104.219.253
+[03.3049         4700dns]: Cache: [dict_keys(['baz.', 'drop.', 'delay.'])]
+[03.3049         4700dns]: Failed to find cached query for foo.
+[03.3049         4700dns]: Current ip address: 172.104.219.253
+[03.3370         4700dns]: Received response from the 172.104.219.253 server:
+[03.3370         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21377
+[03.3370         4700dns]: ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[03.3370         4700dns]: ;; QUESTION SECTION:
+[03.3370         4700dns]: ;foo.                           IN      NS
+[03.3371         4700dns]: ;; ANSWER SECTION:
+[03.3371         4700dns]: foo.                    5       IN      NS      ns.foo.
+[03.3371         4700dns]: ;; ADDITIONAL SECTION:
+[03.3371         4700dns]: ns.foo.                 5       IN      A       172.104.219.253
+[03.3371         4700dns]: RR in response: foo.                    5       IN      NS      ns.foo.
+[03.3371         4700dns]: Adding to cache
+[03.3371         4700dns]: Added query foo. to cache with a ttl of 5
+[03.3371         4700dns]: Cache: [dict_keys(['baz.', 'drop.', 'delay.'])]
+[03.3371         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21377
+[03.3371         4700dns]: ;; flags: qr rd; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[03.3371         4700dns]: ;; QUESTION SECTION:
+[03.3371         4700dns]: ;foo.                           IN      NS
+[03.3371         4700dns]: ;; ANSWER SECTION:
+[03.3371         4700dns]: foo.                    5       IN      NS      ns.foo.
+[03.3371         4700dns]: ;; AUTHORITY SECTION:
+[03.3371         4700dns]: foo.                    5       IN      NS      ns.foo.
+[03.3371         4700dns]: ;; ADDITIONAL SECTION:
+[03.3371         4700dns]: ns.foo.                 5       IN      A       172.104.219.253
+[03.3371         4700dns]: ns.foo.                 5       IN      A       172.104.219.253
+[03.3371         4700dns]: Adding to cache
+[03.3372         4700dns]: baliwick domain: foo.
+[03.3372         4700dns]: RR foo. discarded from rr, out of baliwick record
+[03.3372         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[03.3372         4700dns]: Sending message:
+[03.3372         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21377
+[03.3372         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[03.3372         4700dns]: ;; QUESTION SECTION:
+[03.3372         4700dns]: ;foo.                           IN      NS
+[03.3372         4700dns]: ;; ANSWER SECTION:
+[03.3372         4700dns]: foo.                    5       IN      NS      ns.foo.
+[03.3372         4700dns]: ;; AUTHORITY SECTION:
+[03.3372         4700dns]: foo.                    5       IN      NS      ns.foo.
+[03.3372         4700dns]: ;; ADDITIONAL SECTION:
+[03.3372         4700dns]: ns.foo.                 5       IN      A       172.104.219.253
+[03.3372         4700dns]: ns.foo.                 5       IN      A       172.104.219.253
+[03.3377        Client 2]: Got response from ('127.0.0.1', 59749):
+[03.3377        Client 2]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 21377
+[03.3377        Client 2]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 2
+[03.3377        Client 2]: ;; QUESTION SECTION:
+[03.3377        Client 2]: ;foo.                           IN      NS
+[03.3377        Client 2]: ;; ANSWER SECTION:
+[03.3377        Client 2]: foo.                    5       IN      NS      ns.foo.
+[03.3377        Client 2]: ;; AUTHORITY SECTION:
+[03.3377        Client 2]: foo.                    5       IN      NS      ns.foo.
+[03.3377        Client 2]: ;; ADDITIONAL SECTION:
+[03.3377        Client 2]: ns.foo.                 5       IN      A       172.104.219.253
+[03.3378        Client 2]: ns.foo.                 5       IN      A       172.104.219.253
+[03.6400        Client 0]: Sending request to 127.0.0.1:
+[03.6400        Client 0]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 17094
+[03.6400        Client 0]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[03.6401        Client 0]: ;; QUESTION SECTION:
+[03.6401        Client 0]: ;foo.                           IN      NS
+[03.6414         4700dns]: Received message:
+[03.6414         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 17094
+[03.6414         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[03.6414         4700dns]: ;; QUESTION SECTION:
+[03.6414         4700dns]: ;foo.                           IN      NS
+[03.6414         4700dns]: Request: foo., Type: NS
+[03.6419         4700dns]: No local record for foo.. Forwarding request to root server
+[03.6419         4700dns]: Cache: [dict_keys(['baz.', 'drop.', 'delay.', 'foo.'])]
+[03.6420         4700dns]: Found cached query
+[03.6420         4700dns]: Found cached response for foo.
+[03.6421         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 17094
+[03.6422         4700dns]: ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[03.6422         4700dns]: ;; QUESTION SECTION:
+[03.6422         4700dns]: ;foo.                           IN      NS
+[03.6422         4700dns]: ;; ANSWER SECTION:
+[03.6422         4700dns]: foo.                    5       IN      NS      ns.foo.
+[03.6422         4700dns]: ;; ADDITIONAL SECTION:
+[03.6422         4700dns]: ns.foo.                 5       IN      A       172.104.219.253
+[03.6422         4700dns]: Adding to cache
+[03.6422         4700dns]: Split domain: ['foo', '']
+[03.6422         4700dns]: baliwick domain: foo.
+[03.6422         4700dns]: RR foo. discarded from rr, out of baliwick record
+[03.6422         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[03.6422         4700dns]: Sending message:
+[03.6422         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 17094
+[03.6422         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[03.6422         4700dns]: ;; QUESTION SECTION:
+[03.6422         4700dns]: ;foo.                           IN      NS
+[03.6422         4700dns]: ;; ANSWER SECTION:
+[03.6422         4700dns]: foo.                    5       IN      NS      ns.foo.
+[03.6422         4700dns]: ;; ADDITIONAL SECTION:
+[03.6422         4700dns]: ns.foo.                 5       IN      A       172.104.219.253
+[03.6425        Client 0]: Got response from ('127.0.0.1', 59749):
+[03.6425        Client 0]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 17094
+[03.6425        Client 0]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[03.6425        Client 0]: ;; QUESTION SECTION:
+[03.6425        Client 0]: ;foo.                           IN      NS
+[03.6425        Client 0]: ;; ANSWER SECTION:
+[03.6425        Client 0]: foo.                    5       IN      NS      ns.foo.
+[03.6425        Client 0]: ;; ADDITIONAL SECTION:
+[03.6425        Client 0]: ns.foo.                 5       IN      A       172.104.219.253
+[04.8744        Client 3]: Sending request to 127.0.0.1:
+[04.8744        Client 3]:  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36578
+[04.8744        Client 3]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[04.8744        Client 3]: ;; QUESTION SECTION:
+[04.8744        Client 3]: ;baz.                           IN      NS
+[04.8757         4700dns]: Received message:
+[04.8757         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36578
+[04.8757         4700dns]: ;; flags: rd; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+[04.8757         4700dns]: ;; QUESTION SECTION:
+[04.8757         4700dns]: ;baz.                           IN      NS
+[04.8758         4700dns]: Request: baz., Type: NS
+[04.8761         4700dns]: No local record for baz.. Forwarding request to root server
+[04.8761         4700dns]: Cache: [dict_keys(['baz.', 'drop.', 'delay.', 'foo.'])]
+[04.8761         4700dns]: Found cached query
+[04.8761         4700dns]: Found cached response for baz.
+[04.8761         4700dns]: Forwarded response: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36578
+[04.8761         4700dns]: ;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[04.8762         4700dns]: ;; QUESTION SECTION:
+[04.8762         4700dns]: ;baz.                           IN      NS
+[04.8762         4700dns]: ;; ANSWER SECTION:
+[04.8762         4700dns]: baz.                    5       IN      NS      ns.baz.
+[04.8762         4700dns]: ;; ADDITIONAL SECTION:
+[04.8762         4700dns]: ns.baz.                 5       IN      A       50.116.57.242
+[04.8762         4700dns]: Adding to cache
+[04.8762         4700dns]: Split domain: ['baz', '']
+[04.8762         4700dns]: baliwick domain: baz.
+[04.8762         4700dns]: RR baz. discarded from rr, out of baliwick record
+[04.8762         4700dns]: message type: <class 'dnslib.dns.DNSRecord'>
+[04.8762         4700dns]: Sending message:
+[04.8762         4700dns]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36578
+[04.8762         4700dns]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[04.8762         4700dns]: ;; QUESTION SECTION:
+[04.8763         4700dns]: ;baz.                           IN      NS
+[04.8763         4700dns]: ;; ANSWER SECTION:
+[04.8763         4700dns]: baz.                    5       IN      NS      ns.baz.
+[04.8763         4700dns]: ;; ADDITIONAL SECTION:
+[04.8763         4700dns]: ns.baz.                 5       IN      A       50.116.57.242
+[04.8766        Client 3]: Got response from ('127.0.0.1', 59749):
+[04.8766        Client 3]: ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36578
+[04.8766        Client 3]: ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+[04.8766        Client 3]: ;; QUESTION SECTION:
+[04.8766        Client 3]: ;baz.                           IN      NS
+[04.8767        Client 3]: ;; ANSWER SECTION:
+[04.8767        Client 3]: baz.                    5       IN      NS      ns.baz.
+[04.8767        Client 3]: ;; ADDITIONAL SECTION:
+[04.8767        Client 3]: ns.baz.                 5       IN      A       50.116.57.242
+[10.0309       Simulator]: Simulation completed
+[10.0309       Simulator]: Verifying responses...
+[10.0321        Client 0]: All responses correctly verified
+[10.0328        Client 1]: All responses correctly verified
+[10.0332        Client 2]: All responses correctly verified
+[10.0335        Client 3]: All responses correctly verified
+[10.0335       Simulator]: All simulation responses verified

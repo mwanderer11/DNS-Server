@@ -1,0 +1,382 @@
+#!/usr/bin/env -S python3 -u
+
+import argparse, socket, time, json, select, struct, sys, math, threading
+from dnslib import DNSRecord, DNSHeader, RR, QTYPE, A, RDMAP
+
+#A, CNAME, NS, MX, TXT records
+# Accept properly formatted DNS requests from local clients and send responses back
+# Reject incoming DNS requests from clients you dont serve
+# implement recursive dns by communicating with other dns servers you discover
+# maintain, properly manage, and use a cache of dns responses
+
+
+class Server:
+    rrs = []
+    ns = []
+    def __init__(self, root_ip, domain, port):
+        self.cache = {} # {query: [response, expires]}
+        self.soa = self.extract_soa(domain)
+        self.root_ip = root_ip
+        self.domain = domain
+        self.port = port
+    
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.socket.bind(("0.0.0.0", port))
+        self.port = self.socket.getsockname()[1]
+
+        self.log("Bound to port %d" % self.port)
+
+    def get_from_cache(self, query):
+        self.log(f"Cache: [{self.cache.keys()}]")
+        answer = self.cache.get(query)
+        if answer and answer[1] > time.time():
+            self.log("Found cached query")
+            return answer[0]
+        self.log(f"Failed to find cached query for {query}")
+        return None
+
+    # def add_to_cache(self, query, response, ttl):
+    #     existing = self.cache.get(str(query))
+    #     if existing:
+    #         if existing[1] < time.time():
+    #             del self.cache[str(query)]
+    #             self.cache[str(query)] = (response, time.time() + ttl)
+    #             self.log(f"Readded expired query {query} to cache")
+    #     else:
+    #         self.log(f"Added query {query} to cache with a ttl of {ttl}")
+    #         self.cache[str(query)] = (response, time.time() + ttl)
+
+
+    def add_to_cache(self, query, response, ttl):
+        self.log(f"Added query {query} to cache with a ttl of {ttl}")
+        self.log(f"Cache: [{self.cache.keys()}]")
+        self.cache[query] = (response, time.time() + ttl)
+        
+
+    # finds the soa record in the zone file
+    def extract_soa(self, domain):
+        # parse zone file
+        zone_file = open(domain)
+        zone_data = zone_file.read()
+        zone_file.close()
+        zone = RR.fromZone(zone_data)
+        for rr in zone:
+            if QTYPE[rr.rtype] == "SOA":
+                self.log(f"SOA record: {rr} ")
+                self.log(f"rdata type: {type(rr)}")
+                return rr
+
+    # adds every resource record in the zone file to the server's list of rrs
+    def extract_records(self):
+        zone_file = open(self.domain)
+        zone_data = zone_file.read()
+        zone_file.close()
+        zone = RR.fromZone(zone_data)
+        for rr in zone:
+            self.rrs.append(rr)
+            if rr.rtype == QTYPE.NS and rr.rname == self.soa.rname:
+                self.ns.append(rr.rdata)
+                self.log(f"type: {type(rr.rdata)}")
+            self.log(f"Record: {rr}")
+
+    # finds the record with the given name and record_type
+    def find_record(self, record, record_type):
+        if record_type == QTYPE.A or record_type == QTYPE.CNAME:
+            for rr in self.rrs:
+                if rr.rname.__str__() == record.__str__():
+                    return rr
+        if record_type == QTYPE.MX:
+            for rr in self.rrs:
+                if rr.rname.__str__() == record.__str__() and rr.rtype == QTYPE.MX:
+                    return rr
+        if record_type == QTYPE.NS:
+            for rr in self.rrs:
+                if rr.rname.__str__() == record.__str__() and rr.rtype == QTYPE.NS:
+                    return rr
+        if record_type == QTYPE.TXT:
+              for rr in self.rrs:
+                if rr.rname.__str__() == record.__str__() and rr.rtype == QTYPE.TXT:
+                    return rr
+        empty_rr = RR(rname=record.__str__(), rtype=QTYPE.A, ttl=0, rdata=A("0.0.0.0"))
+        return empty_rr
+
+    # returns a list of records with the domain name but are not identical to the given record
+    def find_additional(self, record, domain, r_type):
+        found = []
+        for rr in self.rrs:
+            if rr.rname == domain and rr.rtype == r_type and (not rr == record):
+                found.append(rr)
+        return found
+
+    def log(self, message):
+        sys.stderr.write(message + "\n")
+        sys.stderr.flush()
+ 
+    def send(self, addr, message):
+        self.log(f"message type: {type(message)}")
+        self.log("Sending message:\n%s" % message)
+        self.socket.sendto(message.pack(), addr)
+
+    # handles responses for a records
+    def respond_a(self, record, response):
+        response.add_answer(record)
+        additional = self.find_additional(record, record.rname, QTYPE.A)
+        self.log(f"additonal matches: {additional}")
+        for rr in additional:
+            response.add_answer(rr)
+            # do we need an authority section?
+            # if the record doesn't have a corresponding ns entry
+        if not record in self.ns:
+            for domain in self.ns:
+                ns_record = self.find_record(self.soa.rname, QTYPE.NS)
+                response.add_auth(ns_record)
+        response.header.rcode = 0 
+        return response
+
+    # handles responses for cname records, finds corresponding a records from rdata
+    def respond_cname(self, record, response):
+        self.log(f"record.rdata: {record.rdata}")
+        response.add_answer(record)
+        # look up A record
+        a_record = self.find_record(record.rdata, QTYPE.A)
+        if not a_record.rdata == A("0.0.0.0"):
+            response.add_answer(a_record)
+            additional = self.find_additional(record, record.rdata.__str__(), QTYPE.A)
+            for rr in additional:
+                response.add_answer(rr)
+        response.header.rcode = 0
+        return response
+
+    # handles responses for ns records, finds corresponding glue records
+    def respond_ns(self, record, response):
+        glue_records = []
+        response.add_answer(record)
+        glue_records.append(self.find_record(record.rdata.__str__(), QTYPE.A))
+        
+        additional = self.find_additional(record, record.rname, QTYPE.NS)
+        for rr in additional:
+            response.add_answer(rr)
+            glue_records.append(self.find_record(rr.rdata.__str__(), QTYPE.A))
+        for rr in glue_records:
+            response.add_ar(rr)
+        response.header.rcode = 0
+        return response
+
+    # handles responses for mx records
+    def respond_mx(self, record, response):
+        response.add_answer(record)
+        additional = self.find_additional(record, record.rname, QTYPE.MX)
+        for rr in additional:
+            response.add_answer(rr)
+        for domain in self.ns:
+                ns_record = self.find_record(self.soa.rname, QTYPE.NS)
+                response.add_auth(ns_record)
+        response.header.rcode = 0
+        return response
+
+    def recv(self, socket):
+        data, addr = socket.recvfrom(65535)
+        authorized = False 
+
+        # Unpack the DNS request 
+        request = DNSRecord.parse(data)
+        self.log("Received message:\n%s" % request)
+        self.log(f"Request: {request.q.qname}, Type: {QTYPE[request.q.qtype]}")
+        response = request.reply()
+        record = self.find_record(request.q.qname, request.q.qtype)
+        # record is in our zone file
+        if record.rdata != A("0.0.0.0"):
+            self.log("Record in zone file")
+            response = self.local_response(record, response)
+            self.send(addr, response)
+        else:
+            #cached = self.get_from_cache(request.q.qname)
+            #if cached:
+               # self.send(addr, cached)
+            self.log(f"No local record for {request.q.qname}. Forwarding request to root server")
+            forwarded_response = self.forward(request, self.root_ip)
+            self.log(f"Forwarded response: {forwarded_response}")
+            if forwarded_response:
+                forwarded_response.header.aa = 0
+                forwarded_response.header.ra = 1
+                forwarded_response.header.tc = 0
+              
+                self.log("Adding to cache")
+                # bailiwick checking for non local responses
+                forwarded_response = self.bailiwick(forwarded_response)
+                # adding to cache with a placeholder ttl for now
+                # add the non local response to the cache
+                self.send(addr, forwarded_response)
+            else:
+                # NX domain
+                response.header.rcode = 3
+                self.send(addr, response)
+
+    def local_response(self, record, response):
+        #for record in records:
+        self.log(f" record: {record}")
+        # A records
+        if record.rtype == QTYPE.A and not record.rdata == A("0.0.0.0"):
+            response = self.respond_a(record,response)
+        # CNAME 
+        elif record.rtype == QTYPE.CNAME:
+            response = self.respond_cname(record, response)
+            
+        #NS
+        elif record.rtype == QTYPE.NS:
+            response = self.respond_ns(record, response)
+        #MX
+        elif record.rtype == QTYPE.MX:
+            response = self.respond_mx(record, response)
+
+        #TXT
+        elif record.rtype == QTYPE.TXT:
+            response.add_answer(record)
+            response.header.rcode = 0
+        else:
+            # NXDomain response
+            response.header.rcode = 3
+        return response
+
+    # forwards the query to the root server
+    def forward(self, query, ip_address):
+        response = self.get_from_cache(str(query.q.qname))
+        if response:
+            self.log(f"Found cached response for {query.q.qname}")
+            response.header.id = query.header.id
+            return response
+
+        self.log(f"Current ip address: {ip_address}")
+        mysocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        mysocket.sendto(query.pack(), (ip_address, 60053))
+        data = b''
+        data, addr = mysocket.recvfrom(65535)
+        response = DNSRecord.parse(data)
+        mysocket.close()
+        self.log(f"Received response from the {ip_address} server:\n{response}")
+        
+        if response.rr or (response.ar and not response.auth):
+            for rr in response.rr:
+                self.log(f"RR in response: {rr}")
+                if rr.rtype == QTYPE.CNAME:
+                    self.log(f"finding corresponding record for cname record. searching for {rr.rdata}")
+                    q = DNSRecord.question(str(rr.rdata))
+                    r = self.forward(q, self.root_ip)
+                    if r:
+                        for answer in r.rr:
+                            response.rr.append(answer)
+                    self.log(f"Forwarded cname record returned: {r}")
+
+            if response.rr:
+                ttl = response.rr[0].ttl
+                for rr in response.rr:
+                    if rr.ttl < ttl:
+                        ttl = rr.ttl
+                self.log("Adding to cache")
+                self.add_to_cache(str(query.q.qname), response, ttl)
+            return response
+        else: # recursive forwarding
+            self.log("Forwarding query")
+            if response.auth:
+                for ns_record in response.auth:
+                    if ns_record.rtype == QTYPE.NS:
+                        ns_address = ns_record.rdata.label
+                        self.log(f"ns address: {ns_address}")
+                        if response.ar:
+                            # parse the a records in the ar section if applicable
+                            for ar in response.ar:
+                                self.log(f"ar rdata: {ar.rdata}")
+                                if str(ar.rname) == str(ns_address):
+                                    forwarded_response = self.forward(query, str(ar.rdata))
+                                    if forwarded_response:
+                                        for ans in response.rr:
+                                            if ans not in forwarded_response.rr:
+                                                forwarded_response.add_answer(ans)
+                                        for auth in response.auth:
+                                            if auth not in forwarded_response.auth:
+                                                forwarded_response.add_auth(auth)
+                                        return forwarded_response
+                                        # for ans in forwarded_response.rr:
+                                        #     if ans not in response.rr:
+                                        #         response.add_answer(ans)
+                                        # for auth in forwarded_response.auth:
+                                        #     if auth not in response.auth:
+                                        #         response.add_auth(auth)
+                                        # for ar in forwarded_response.ar:
+                                        #     if ar not in response.ar:
+                                        #         response.add_ar(ar)
+                                    return response
+                        else:
+                            forwarded_response = self.forward(query, str(ns_address))
+                            if forwarded_response:
+                                for ans in response.rr:
+                                    if ans not in forwarded_response.rr:
+                                        forwarded_response.add_answer(ans)
+                                for auth in response.auth:
+                                    if auth not in forwarded_response.auth:
+                                        forwarded_response.add_auth(auth)
+                                return forwarded_response
+                                # for ar in forwarded_response.ar:
+                                #     if ar not in response.ar:
+                                #         response.add_ar(ar)
+                            return response
+                    else:
+                        return None
+
+    # bailiwick checking to make sure all the records returned are within the responding server's domain
+    def bailiwick(self, response):
+        domain = ""
+        if response.auth:
+            domain = str(response.auth[0].rname)
+            if not domain.endswith("."):
+                domain = domain + "."
+        else:
+            domain_split = str(response.q.qname).split(".")
+            self.log(f"Split domain: {domain_split}")
+            domain = domain_split[-2]
+            if not domain.endswith("."):
+                domain = domain + "."
+        valid_ar = []
+        valid_rr = []
+        domains = []
+        domains.append(domain)
+        self.log(f"baliwick domain: {domain}")
+        for rr in response.rr:
+            if rr.rtype == QTYPE.CNAME:
+                valid_rr.append(rr)
+                domains.append(str(rr.rdata))
+                continue
+            for d in domains:
+                if str(rr.rname).endswith(f"{d}") or not rr.rtype == QTYPE.A:
+                    valid_rr.append(rr)
+                    continue
+            else:
+                self.log(f"RR {rr.rname} discarded from rr, out of baliwick record")
+        for rr in response.ar:
+            if str(rr.rname).endswith(f"{domain}"):
+                valid_ar.append(rr)
+            else:
+                self.log(f"RR {rr.rname} discarded from ar, out of baliwick record")
+        response.ar = valid_ar
+        response.rr = valid_rr
+        return response
+                
+    def run(self):
+        seq = 0
+        self.extract_records()
+        while True:
+            socks = select.select([self.socket], [], [], 0.1)[0]
+            for conn in socks:
+                thread = threading.Thread(target = self.recv, args = (conn,))
+                thread.start()
+        return
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='send data')
+    parser.add_argument('root_ip', type=str, help="The IP address of the root server")
+    parser.add_argument('zone', type=str, help="The zone file for this server")
+    parser.add_argument('--port', type=int, help="The port this server should bind to", default=0)
+    args = parser.parse_args()
+    
+    sender = Server(args.root_ip, args.zone, args.port)
+    sender.run()
